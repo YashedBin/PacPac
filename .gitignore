@@ -1,0 +1,74 @@
+# Build
+
+build/
+dist/
+*.exe
+*.obj
+*.dylib
+*.dll
+*.a
+*.lib
+*.out
+
+
+# CMake
+
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+
+
+# Node.js 
+# TO BE ADDED
+node_modules/
+
+# Env variables
+.env
+.env.local
+
+bin/
+
+
+# Protobuf generated
+protocol/generated
+# need lang specific vers
+
+
+
+# GARBAGE
+
+.vscode/
+
+
+# Visual
+
+.vs/
+*.user
+*.userosscache
+*.vcxproj.user
+
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+
+# Log & temp dir
+
+*.log
+*.temp
+logs/
+temp/
+
+
+
+
