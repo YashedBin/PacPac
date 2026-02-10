@@ -10,7 +10,41 @@ Disclaimer: This is not the actual docs or of a much helpful information
 - Migration of & Working on game
 - Adding new Game design
 - finish partial stage of network capsule
+
+> Temp roadmap kinda list
+[x] `Gamepanel`  get working with the base Main class with proper `consoleLog`s
+[] if done with Panel running drawing `Map` is the goal
+[] Map is drawn rather than going for Sprites We get `Pacman` done
+[] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
+This is where the Pacman and roam around 
+[] Ghost? nah `SpriteManager` get all sf::Rect fill with Sprites 
+[] `Ghost` now ( Because codebase is huge for Ghost )
+[] `SoundManager` finishing Engine/'s half job
+[] Add `Menu` so we can get going on real **PacPac**
+This is where I can make Pellets or Leaderboard for Offline but we need to work TcpSockets and Connection
+because gameSense is validate on the Server::Room :) 
+[] Lots of `Server` Code to align with `Client`
+[] `Pellets` & `Powerups` can be between above or After Server is done 
+for not adding overhead for us 
 --- 
+
+
+---
+## Dev Log 10-02-2026
+##### **Goals** 
+- from `Game`
+    - `Gamepanel` need to get finish 
+    - `Map` adding it because of Level Simplicity 
+    if above two are done work on `Pacman`
+##### **Added**
+- 
+##### **Fixed** 
+- 
+##### **Notes:** 
+- 
+---
+
+
 
 
 ---
