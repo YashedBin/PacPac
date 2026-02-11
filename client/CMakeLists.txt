@@ -12,8 +12,8 @@ find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 add_executable(pacpac
     src/main.cpp
-    src/gamepanel.cpp
-    src/consoleLog.cpp
+    src/game/gamepanel.cpp
+    src/engine/consoleLog.cpp
 )
 
 target_link_libraries(pacpac PRIVATE sfml-graphics sfml-window sfml-system)

@@ -3,6 +3,8 @@
 #include <string>
 
 #include "game/gamepanel.hpp"
+#include "game/global.hpp"
+
 
 namespace Game {
 
@@ -10,7 +12,7 @@ sf::RenderWindow Gamepanel::window;
 Engine::ConsoleLog Gamepanel::console("PacPac");
 
 Gamepanel::Gamepanel() {
-    window.create(sf::VideoMode(800,600), "PacPac");    
+    window.create({WIN_WIDTH, WIN_HEIGHT},"PacPac");    
 }
 
 void Gamepanel::Run() {
