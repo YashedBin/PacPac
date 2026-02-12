@@ -2,6 +2,7 @@
 
 cd client
 
+mkdir -p build
 cd build
 
 cmake ..
