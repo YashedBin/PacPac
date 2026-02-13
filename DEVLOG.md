@@ -13,21 +13,37 @@ Disclaimer: This is not the actual docs or of a much helpful information
 
 > Temp roadmap kinda list
 - [x] `Gamepanel`  get working with the base Main class with proper `consoleLog`s
-- [] Have to add this after commiting but need Loaders and Manual Classes to be added before anything related to big Fstreams
-- [] if done with Panel running drawing `Map` is the goal
-- [] Map is drawn rather than going for Sprites We get `Pacman` done
-- [] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
+- [ ] Have to add this after commiting but need Loaders and Manual Classes to be added before anything related to big Fstreams
+- [ ] if done with Panel running drawing `Map` is the goal
+- [ ] Map is drawn rather than going for Sprites We get `Pacman` done
+- [ ] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
 This is where the Pacman and roam around 
-- [] Ghost? nah `SpriteManager` get all sf::Rect fill with Sprites 
-- [] `Ghost` now ( Because codebase is huge for Ghost )
-- [] `SoundManager` finishing Engine/'s half job
-- [] Add `Menu` so we can get going on real **PacPac**
+- [ ] Ghost? nah `SpriteManager` get all sf::Rect fill with Sprites 
+- [ ] `Ghost` now ( Because codebase is huge for Ghost )
+- [ ] `SoundManager` finishing Engine/'s half job
+- [ ] Add `Menu` so we can get going on real **PacPac**
 This is where I can make Pellets or Leaderboard for Offline but we need to work TcpSockets and Connection
 because gameSense is validate on the Server::Room :) 
-- [] Lots of `Server` Code to align with `Client`
-- [] `Pellets` & `Powerups` can be between above or After Server is done 
+- [ ] Lots of `Server` Code to align with `Client`
+- [ ] `Pellets` & `Powerups` can be between above or After Server is done 
 for not adding overhead for us 
 --- 
+
+
+
+
+---
+## Dev Log 13-02-2026
+##### **Added**
+- Added `Global` Constants for overall CONSTANTS
+
+##### **Fixed** 
+- Changes Window from Vector2u -> Unsigned Int building Vector2u
+- Changes Window Obj to build from implicit Contructor and not Window.Create()
+
+##### **Notes:** 
+- In upcoming days I'll be adding Submodules I realise There will be Cross Platform Dependencies and Also SFML will break on Linux/Windows with Different Versions too
+---
 
 
 ---
