@@ -31,6 +31,35 @@ for not adding overhead for us
 
 
 
+---
+## Dev Log 14-02-2026
+##### **Added**
+- Add Submodule `SFML` Locked to 3.0.2 
+why 3.0.2 not 3.0.0 because of some CMake changes and etc 
+So, it was more stable.
+##### **Plan**
+
+- [ ] migrate the misely code into Ver 3 compatible ( just sf::Vector2 class if I remember correctly)
+- [ ] Global CMakeLists.txt and Client CMake
+- [ ] Change Build.sh / Build.bat
+- [ ] Try a Window build run ( after Exams )
+- [ ] `FileLoader` & `Map` if everything is done
+
+### Change of Plans for GUI
+
+We won't be designing Templates with Fake buttons
+We Will try to design the Aesthetics at it's best but 
+` ImGui::ImGui ` Is here :) 
+as there will be multiple things 
+- Settings
+- Menu
+- Levels
+- Themes
+We ourselves should get a better Framework + there is a Debug screen in
+ImGui for Data We want to look into that Personally!!
+
+---
+
 
 ---
 ## Dev Log 13-02-2026
