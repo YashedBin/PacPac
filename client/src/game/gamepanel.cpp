@@ -8,27 +8,28 @@
 
 namespace Game {
 
-sf::RenderWindow Gamepanel::window;
+sf::RenderWindow Gamepanel::window(
+        sf::VideoMode(Global::WIN_SIZE),
+        "PacPac",
+        sf::Style::Close
+        );
 Engine::ConsoleLog Gamepanel::console("PacPac");
 
 Gamepanel::Gamepanel() {
-    window.create({WIN_WIDTH, WIN_HEIGHT},"PacPac");    
+
 }
 
 void Gamepanel::Run() {
     
     while (isRunning())
     {
-        sf::Event event;
-        // Engine::EventListner will be added
-        while (window.pollEvent(event))
+        while (const std::optional event = window.pollEvent())
         {
-            console.writeLine("Event Occured");
-            if (event.type == sf::Event::Closed)
+            if(event->is<sf::Event::Closed>())
                 window.close();
         }
         Render();
-    }
+    } 
 }
 
 Gamepanel::~Gamepanel() {
@@ -43,7 +44,7 @@ void Gamepanel::Render() {
 
     sf::RectangleShape square(sf::Vector2f(100.f, 100.f)); 
     square.setFillColor(sf::Color::Green);
-    square.setPosition(350.f, 250.f);
+    square.setPosition(sf::Vector2f(350.f, 250.f));
     
     window.clear(sf::Color::Black);
     window.draw(square);
