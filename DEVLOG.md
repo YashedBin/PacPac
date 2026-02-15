@@ -32,6 +32,15 @@ for not adding overhead for us
 
 
 ---
+## Dev Log 15-02-2026
+##### **Added** 
+- Add root CMakeLists.txt
+- refactor miserly lines for `SFML 2.5` -> `SFML 3.0.2`
+- Changes client/CMakeLists.txt 
+---
+
+
+---
 ## Dev Log 14-02-2026
 ##### **Added**
 - Add Submodule `SFML` Locked to 3.0.2 
@@ -39,9 +48,10 @@ why 3.0.2 not 3.0.0 because of some CMake changes and etc
 So, it was more stable.
 ##### **Plan**
 
-- [ ] migrate the misely code into Ver 3 compatible ( just sf::Vector2 class if I remember correctly)
-- [ ] Global CMakeLists.txt and Client CMake
-- [ ] Change Build.sh / Build.bat
+- [x] migrate the misely code into Ver 3 compatible ( just sf::Vector2 class if I remember correctly)
+- [x] Global CMakeLists.txt and Client CMake
+- [x] Change Build.sh / Build.bat
+- [ ] Add `ImGui-SFML` and Change builds and CMakeLists.txt
 - [ ] Try a Window build run ( after Exams )
 - [ ] `FileLoader` & `Map` if everything is done
 
