@@ -1,12 +1,12 @@
 #!/bin/bash
 
-cd client
+#cd client
 
 mkdir -p build
 cd build
 
 cmake ..
 
-make
+make -j$(nproc)
 
-./pacpac
+./client/pacpac

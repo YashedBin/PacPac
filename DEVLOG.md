@@ -13,21 +13,76 @@ Disclaimer: This is not the actual docs or of a much helpful information
 
 > Temp roadmap kinda list
 - [x] `Gamepanel`  get working with the base Main class with proper `consoleLog`s
-- [] Have to add this after commiting but need Loaders and Manual Classes to be added before anything related to big Fstreams
-- [] if done with Panel running drawing `Map` is the goal
-- [] Map is drawn rather than going for Sprites We get `Pacman` done
-- [] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
+- [ ] Have to add this after commiting but need Loaders and Manual Classes to be added before anything related to big Fstreams
+- [ ] if done with Panel running drawing `Map` is the goal
+- [ ] Map is drawn rather than going for Sprites We get `Pacman` done
+- [ ] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
 This is where the Pacman and roam around 
-- [] Ghost? nah `SpriteManager` get all sf::Rect fill with Sprites 
-- [] `Ghost` now ( Because codebase is huge for Ghost )
-- [] `SoundManager` finishing Engine/'s half job
-- [] Add `Menu` so we can get going on real **PacPac**
+- [ ] Ghost? nah `SpriteManager` get all sf::Rect fill with Sprites 
+- [ ] `Ghost` now ( Because codebase is huge for Ghost )
+- [ ] `SoundManager` finishing Engine/'s half job
+- [ ] Add `Menu` so we can get going on real **PacPac**
 This is where I can make Pellets or Leaderboard for Offline but we need to work TcpSockets and Connection
 because gameSense is validate on the Server::Room :) 
-- [] Lots of `Server` Code to align with `Client`
-- [] `Pellets` & `Powerups` can be between above or After Server is done 
+- [ ] Lots of `Server` Code to align with `Client`
+- [ ] `Pellets` & `Powerups` can be between above or After Server is done 
 for not adding overhead for us 
 --- 
+
+
+
+---
+## Dev Log 15-02-2026
+##### **Added** 
+- Add root CMakeLists.txt
+- refactor miserly lines for `SFML 2.5` -> `SFML 3.0.2`
+- Changes client/CMakeLists.txt 
+---
+
+
+---
+## Dev Log 14-02-2026
+##### **Added**
+- Add Submodule `SFML` Locked to 3.0.2 
+why 3.0.2 not 3.0.0 because of some CMake changes and etc 
+So, it was more stable.
+##### **Plan**
+
+- [x] migrate the misely code into Ver 3 compatible ( just sf::Vector2 class if I remember correctly)
+- [x] Global CMakeLists.txt and Client CMake
+- [x] Change Build.sh / Build.bat
+- [ ] Add `ImGui-SFML` and Change builds and CMakeLists.txt
+- [ ] Try a Window build run ( after Exams )
+- [ ] `FileLoader` & `Map` if everything is done
+
+### Change of Plans for GUI
+
+We won't be designing Templates with Fake buttons
+We Will try to design the Aesthetics at it's best but 
+` ImGui::ImGui ` Is here :) 
+as there will be multiple things 
+- Settings
+- Menu
+- Levels
+- Themes
+We ourselves should get a better Framework + there is a Debug screen in
+ImGui for Data We want to look into that Personally!!
+
+---
+
+
+---
+## Dev Log 13-02-2026
+##### **Added**
+- Added `Global` Constants for overall CONSTANTS
+
+##### **Fixed** 
+- Changes Window from Vector2u -> Unsigned Int building Vector2u
+- Changes Window Obj to build from implicit Contructor and not Window.Create()
+
+##### **Notes:** 
+- In upcoming days I'll be adding Submodules I realise There will be Cross Platform Dependencies and Also SFML will break on Linux/Windows with Different Versions too
+---
 
 
 ---
