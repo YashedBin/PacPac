@@ -22,9 +22,28 @@ namespace Game {
         
     }
 
-    void Map::drawMap(int MapIndex) {
-        for(auto& line: m_mapData) {
-            std::cout << line << std::endl;
-        } 
+    void Map::drawMap(sf::RenderWindow& window, int MapIndex) {
+        
+        sf::RectangleShape square(sf::Vector2f(32.f, 32.f));
+        square.setFillColor(sf::Color::Green);
+        square.setPosition(sf::Vector2f(0.f ,0.f));
+
+        // temp var replace by new Global.hpp
+        int ROWS = 21, COLS = 21;
+        float TILE_SIZE = 32;
+        
+        for(int row = 0; row < ROWS; row++) {
+            for(int col = 0; col < COLS; col++) {
+                 if(m_mapData[row][col] == 'W') {
+                    square.setPosition(sf::Vector2f(col * TILE_SIZE, row * TILE_SIZE));
+                    window.draw(square);
+                 }
+                 if(m_mapData[row][col] == 'P') {
+                    square.setFillColor(sf::Color::Blue);
+                    square.setPosition(sf::Vector2f(col * TILE_SIZE, row * TILE_SIZE));
+                    window.draw(square);
+                 }
+            }
+        }
     }
 }

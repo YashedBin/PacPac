@@ -4,6 +4,7 @@
 
 #include "core/fileloader.hpp"
 #include "game/global.hpp"
+#include <SFML/Graphics/RenderWindow.hpp>
 
 
 namespace Game {
@@ -16,7 +17,7 @@ class Map {
     public: 
         Map();
         virtual ~Map();
-        void drawMap(int MapIndex);
+        void drawMap(sf::RenderWindow& window, int MapIndex);
 
 };
 

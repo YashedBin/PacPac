@@ -9,9 +9,10 @@
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+
+#include "game/map.hpp"
 #include "game/gamepanel.hpp"
 #include "game/global.hpp"
-#include "game/map.hpp"
 
 
 namespace Game {
@@ -22,6 +23,7 @@ sf::RenderWindow Gamepanel::window(
         sf::Style::Close
         );
 Engine::ConsoleLog Gamepanel::console("PacPac");
+Game::Map Gamepanel::map;
 
 Gamepanel::Gamepanel() {
     window.setFramerateLimit(Global::FPS);
@@ -50,7 +52,8 @@ void Gamepanel::Run() {
         
         ImGui::SFML::Update(window, deltaClock.restart());
         ImGui::ShowDemoWindow();
-
+        
+        // temp lines
         ImGui::Begin("Is it a HEllow Worls?");
         ImGui::Button("Don't tab on me!!");
         ImGui::End();
@@ -72,12 +75,9 @@ bool Gamepanel::isRunning() {
 
 void Gamepanel::Render() {
 
-    sf::RectangleShape square(sf::Vector2f(100.f, 100.f)); 
-    square.setFillColor(sf::Color::Green);
-    square.setPosition(sf::Vector2f(350.f, 250.f));
     
     window.clear();
-    window.draw(square);
+    map.drawMap(window , 0);
 
     ImGui::SFML::Render(window);
     window.display();
