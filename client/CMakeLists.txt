@@ -6,10 +6,14 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
+file(COPY ${CMAKE_SOURCE_DIR}/client/assets DESTINATION ${CMAKE_BINARY_DIR})
+
 # files to add into executable
 add_executable(pacpac
     src/main.cpp
     src/game/gamepanel.cpp
+    src/game/map.cpp
+    src/core/fileloader.cpp
     src/engine/consoleLog.cpp
 )
 
