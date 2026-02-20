@@ -13,8 +13,8 @@ Disclaimer: This is not the actual docs or of a much helpful information
 
 > Temp roadmap kinda list
 - [x] `Gamepanel`  get working with the base Main class with proper `consoleLog`s
-- [ ] Have to add this after commiting but need Loaders and Manual Classes to be added before anything related to big Fstreams
-- [ ] if done with Panel running drawing `Map` is the goal
+- [x] Have to add this after commiting but need Loaders and Manual Classes to be added before anything related to big Fstreams
+- [x] if done with Panel running drawing `Map` is the goal
 - [ ] Map is drawn rather than going for Sprites We get `Pacman` done
 - [ ] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
 This is where the Pacman and roam around 
@@ -29,6 +29,47 @@ because gameSense is validate on the Server::Room :)
 for not adding overhead for us 
 --- 
 
+
+---
+## Dev Log 20-02-2026
+##### **Added** 
+- Added `Dear ImGui` --> `1.91.11`
+- Added `ImGui-SFML` --> `v3`
+- Added `Core::FileLoader`
+without Audio, Sprite, Config Loading
+- Added `Game::Map`
+without Levels, and Util methods
+- Added `assets/maps` & `assets/fonts` with 1 map.txt and 3 fonts
+in which only 1 will be used
+
+##### **Fixed** 
+- Fixed Path issues for CMake Root and Client
+
+##### **Notes:** 
+- 
+##### **Plan** 
+- Plan for Map 
+    - will be using .bin after I have done designing Map in the Editor
+    - will be rendering it with Spritesheet After EventHandler designing
+- Plan for Entities
+    - Will be shifting to EntityTemplate ( tomorrow )
+- Plan for CMake
+    - will try to make it more natural to follow and also
+    - TRY COMPILING ON MSVC AT LEAST!!
+- Plan for EVENTS
+    - EventListner ROUTER over SF:: 
+    - EventHandler over Sf::Events
+        - MouseHandler SS
+        - KeyboardKHandler SS
+        - or PacmanHandler ( which is Naive)
+- Plan AFTER ENTITY_TEMPLATE
+    - Pacman Template 
+    - Bullet Template OR Ghost Template
+
+and Get started on some ViewPort changes with ImGui too 
+- TODAY NO MAP : ) 
+
+---
 
 
 ---
@@ -51,9 +92,9 @@ So, it was more stable.
 - [x] migrate the misely code into Ver 3 compatible ( just sf::Vector2 class if I remember correctly)
 - [x] Global CMakeLists.txt and Client CMake
 - [x] Change Build.sh / Build.bat
-- [ ] Add `ImGui-SFML` and Change builds and CMakeLists.txt
+- [x] Add `ImGui-SFML` and Change builds and CMakeLists.txt
 - [ ] Try a Window build run ( after Exams )
-- [ ] `FileLoader` & `Map` if everything is done
+- [x] `FileLoader` & `Map` if everything is done
 
 ### Change of Plans for GUI
 
