@@ -2,7 +2,7 @@
 
 struct Position {
     float x,y;
-}
+};
 
 template <typename T>
 class Entity {
