@@ -14,7 +14,6 @@ add_executable(pacpac
     src/game/gamepanel.cpp
     src/game/map.cpp
     src/core/fileloader.cpp
-    src/engine/consoleLog.cpp
 )
 
 # link libraries to be made
