@@ -31,6 +31,35 @@ for not adding overhead for us
 
 
 ---
+## Dev Log 26-02-2026
+- missed a half week devLogs AND Progression
+
+##### **Added**
+- Add `Drawable` Abstract class (Need pure inheritance)
+- Add `Entity<Position>` Template ( yea I rightaway wrote Position because
+I'm about to Remove that WRAPPER)
+- Add `entity.tpp`, `entity.hpp`, `drawable.hpp`, `core/timer.hpp`, & `core/consoeLog.hpp`
+- Revamped `ConsoleLog` -> `CLog` a Semi-Complete Console Logger which will need
+Scope, Logging Type, Msg/Task to Log in a little Pretty way
+- Add `Timer` a Class which is RAII based Timer (obviously* counts overheads don't know why) 
+- Revamped `Global` -> `PATH` + `CONFIG` + `CONST` for more Clarity and ...
+- Add `Direction` Enums 
+
+##### **Fixed** 
+- Revamp/Fixed Compilation time (yea I searched for building cache but got Compile cache) 
+in `client/CMakeLists.txt` with PreCompiledHeaders (PCH)
+
+##### **Notes:** 
+- `never try to use template with premature knowledge ever`
+- enjoy beautiful log reading and adding `Core::CLog::Log(Three Parameters to Type)` to every meaning full scope
+
+##### **Plan** 
+- PLAN still is same as `20-02-26`'s DevLog 
+- Change in Entity<T> to Entity Abstract Class 
+---
+
+
+---
 ## Dev Log 20-02-2026
 ##### **Added** 
 - Added `Dear ImGui` --> `1.91.11`
