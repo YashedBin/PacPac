@@ -15,9 +15,9 @@ enum class LogType {
 
 namespace Core {
 
-    class CLog {
+    class Clog {
         public:
-            CLog() = default;
+            Clog() = default;
             
             static void log(const std::string& scope, const LogType& type, const std::string& task){
                 std::string typeStr;
@@ -28,8 +28,8 @@ namespace Core {
                     case LogType::WARNING: typeStr = "WARN"; break;
                     case LogType::ERROR: typeStr = "ERROR"; break;
                 }
-                std::cout << "[" << Timer::getFormattedTime() << "][" << scope << "][" << typeStr << "]: " << task << std::endl;
-    
+                std::cout << "[" << Timer::getFormattedTime() << "] [" << scope << "] [" << typeStr << "]: " << task << std::endl;
+                
             }
     };
 
