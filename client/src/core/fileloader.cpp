@@ -38,6 +38,7 @@ namespace Core {
     }
 
     sf::Image loadImage(const char* path) {
+        sf::Image img;
         if(!img.loadFromFile(path)){
             throw std::runtime_error("Failed to open File:" + std::string(path));
         }
@@ -45,29 +46,22 @@ namespace Core {
     }
 
     std::variant<sf::Image, std::vector<std::string>, std::string> FileLoader::load(const char* filepath) {
-        std::pair<std::string, std::string> preSuf = getPrefixSuffix(filepath);
-            
-        
-            if (preSuf.second == ".png" && preSuf.first == "ani_") {
-                return loadImage(filepath);
-                // for SpriteSheets
+            auto [prefix, suffix] = getPrefixSuffix(filepath);
+    
+            if (suffix == ".png" && prefix == "ani_") {
+               return loadImage(filepath);
             }
-
-            if (preSuf.second == ".png") {
+            if (suffix == ".txt" && prefix == "map_") {
+                return loadLines(filepath);
+            }
+            if (suffix == ".bin" && prefix == "map_") {
+                //return loadBinary(filepath);
+            }    
+            if (suffix == ".png") {
                 // return loadImage(path);
                 // for Temps or Logos
             }
-
-            if (preSuf.second == ".txt" && preSuf.first == "map_") {
-                return loadLines(filepath);
-            }
-
-            if (preSuf.second == ".bin" && preSuf.first == "map_") {
-                // maps in binary
-                // return loadBinary(filepath);
-            }
-
-            if(preSuf.second == ".txt" && preSuf.first != "map_") {
+            if(suffix == ".txt" && prefix != "map_") {
                 // normal txt so far
             }
 
@@ -75,12 +69,17 @@ namespace Core {
     }
 
     std::pair<std::string, std::string> FileLoader::getPrefixSuffix(const char* path) {
-        std::string fpath = std::string(path);
-        std::string prefix = fpath.substr(0,4);
+        
+        // Path path 
+        std::string filepath = std::string(path);
+        size_t lastSlash = filepath.find_last_of('/');
+        std::string fpath = filepath.substr(lastSlash + 1);
+
         /*
          * All Assets are suppose to have 3 len Prefix 
          * describing their Main Use
          */
+        std::string prefix = fpath.substr(0,4);
         size_t pos = fpath.find_last_of('.');
         if (pos == std::string::npos) return {"", ""};
         std::string suffix = fpath.substr(pos);   

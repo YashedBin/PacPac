@@ -14,14 +14,13 @@ namespace Core {
     class FileLoader {
         private:
             std::ifstream m_file;
-            sf::Image img;
+            static std::pair<std::string, std::string> getPrefixSuffix(const char* path);
+            static std::vector<std::string> loadLines(const char*);
 
         public:
             explicit FileLoader(const char* path);
             virtual ~FileLoader();
-            std::vector<std::string> loadLines(const char*);
             static std::variant<sf::Image, std::vector<std::string>, std::string> load(const char* filepath);
             // json , yaml later 
-            std::pair<std::string, std::string> FileLoader::getPrefixSuffix(const char* path);
     };
 }

@@ -16,7 +16,7 @@ namespace Game {
         std::string Map1 = std::string(PATH::MAPS_PATH) + "map_classic.txt";
         auto result = Core::FileLoader::load(Map1.c_str());
         m_mapData = std::get<std::vector<std::string>>(result);
-    } // hopes so FileLoader dies here
+    }
 
     Map::~Map() {
         
