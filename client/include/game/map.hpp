@@ -9,16 +9,16 @@
 
 namespace Game {
 
-class Map {
-    private:
-        std::vector<std::string> m_mapData;
-        static Core::FileLoader FileLoader;
-
-    public: 
-        Map();
-        virtual ~Map();
-        void drawMap(sf::RenderWindow& window, int MapIndex);
-
-};
+    class Map {
+        private:
+            std::vector<std::string> m_mapData;
+            static Core::FileLoader FileLoader;
+    
+        public: 
+            Map();
+            virtual ~Map();
+            void drawMap(sf::RenderWindow& window, int MapIndex);
+    
+    };
 
 }
