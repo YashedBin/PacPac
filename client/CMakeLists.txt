@@ -14,8 +14,25 @@ add_executable(pacpac
     src/game/gamepanel.cpp
     src/game/map.cpp
     src/core/fileloader.cpp
-    src/engine/consoleLog.cpp
+
+    src/entities/pacman.cpp
+
+    src/engine/spritemanager.cpp
 )
+
+target_precompile_headers(pacpac PRIVATE
+    <SFML/Graphics.hpp>
+    <SFML/Window.hpp>
+    <SFML/System.hpp>
+    <iostream>
+    <chrono>
+    <string>
+    <vector>
+    <memory>
+    "include/core/consolelog.hpp"
+    "include/core/timer.hpp"
+)
+
 
 # link libraries to be made
 target_link_libraries(pacpac PRIVATE 

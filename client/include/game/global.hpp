@@ -2,30 +2,44 @@
 
 #include <SFML/Graphics.hpp>
 
+    // Refe
+    // W = 22
+    // A = 0
+    // S = 18
+    // D = 3
 
-// GamePanel Constants
 
-namespace Global {
+namespace PATH {
+
+    constexpr const char* SPRITE_PATH = "assets/sprites/";
+    constexpr const char* SOUND_PATH = "assets/audio/"; 
+    constexpr const char* FONT_PATH = "assets/fonts/";
+    constexpr const char* MAPS_PATH = "assets/maps/";
+}
+
+namespace CONFIG {
 
 
-    constexpr unsigned int WIN_H = 900;
-    constexpr unsigned int WIN_W = 900;
-    //constexpr sf::Vector2u WIN_SIZE = {900,900};
+    //inline sf::Vector2u getWindowSizeVu() {
+    //  auto desktop = sf::VideoMode::getDesktopMode();
+        //return sf::Vector2u(desktop.width * 0.8, desktop.height * 0.8);
+    //}
+    
+    //inline const sf::Vector2u WIN_SIZE = getWindowSizeVu();
+
+    constexpr sf::Vector2u WIN_SIZE = {1024, 1024};
     constexpr unsigned int FPS = 60;
 
-    constexpr const char* SPRITE_PATH = "assets/sprites";
-    constexpr const char* SOUND_PATH = "assets/audio"; 
-    constexpr const char* FONT_PATH = "assests/fonts";
 
-    constexpr unsigned TILE_SIZE = 32;
-    // can be 64 Let us decide the Map3 first
-    // constexpr unsigned CELL_W = 32;
-    // constexpr unsigned CELL_H = 32;
+    constexpr unsigned MAP_OFFSET = 32; // Need Map Edit
+    constexpr unsigned TILE_SIZE = 32;     
+}
 
-    constexpr float PAC_SPEED = 5.0f;
-    constexpr float GHOST_SPEED = 3.5f;
+namespace CONST {
 
-    // all values would be tweaked 
+    constexpr float PAC_SPEED = 0.5f;
+    constexpr float GHOST_SPEED = 0.35f;
+
     constexpr unsigned int SCORE_PELLET = 10;
     constexpr unsigned int SCORE_P_PELLET = 20;
     constexpr unsigned int SCORE_GHOST = 30;

@@ -13,10 +13,12 @@ namespace Game {
    // So right now its static Type
 
     Map::Map() {
-        std::string Map1 = std::string(Global::MAPS_PATH) + "map_classic.txt";
-        Core::FileLoader FileLoader(Map1.c_str());
-        m_mapData = FileLoader.loadLines();
-    } // hopes so FileLoader dies here
+        std::string Map1 = std::string(PATH::MAPS_PATH) + "map_classic.txt";
+        auto result = Core::FileLoader::load(Map1.c_str());
+        m_mapData = std::get<std::vector<std::string>>(result);
+
+        Core::Clog::log("Map", LogType::INFO, "m_mapData has been Initialized!! from :" + std::string(Map1));
+    }
 
     Map::~Map() {
         
@@ -25,22 +27,25 @@ namespace Game {
     void Map::drawMap(sf::RenderWindow& window, int MapIndex) {
         
         sf::RectangleShape square(sf::Vector2f(32.f, 32.f));
-        square.setFillColor(sf::Color::Green);
         square.setPosition(sf::Vector2f(0.f ,0.f));
-
-        // temp var replace by new Global.hpp
-        int ROWS = 21, COLS = 21;
-        float TILE_SIZE = 32;
+            
+        // mapData might not ever replace
+        // MapIndex Will be called in Map() later when
+        // a CERTAIN LEVEL must be call To Save Complex Buffer move to 
+        // do LEVEL[m_mapData] 
+        int ROWS = m_mapData.size();
+        int COLS = m_mapData[0].size();
         
         for(int row = 0; row < ROWS; row++) {
             for(int col = 0; col < COLS; col++) {
                  if(m_mapData[row][col] == 'W') {
-                    square.setPosition(sf::Vector2f(col * TILE_SIZE, row * TILE_SIZE));
+                    square.setFillColor(sf::Color(25, 25, 166));
+                    square.setPosition(sf::Vector2f(col * CONFIG::TILE_SIZE + CONFIG::MAP_OFFSET, row * CONFIG::TILE_SIZE + CONFIG::MAP_OFFSET));
                     window.draw(square);
                  }
                  if(m_mapData[row][col] == 'P') {
-                    square.setFillColor(sf::Color::Blue);
-                    square.setPosition(sf::Vector2f(col * TILE_SIZE, row * TILE_SIZE));
+                    square.setFillColor(sf::Color::Green);
+                    square.setPosition(sf::Vector2f(col * CONFIG::TILE_SIZE + CONFIG::MAP_OFFSET, row * CONFIG::TILE_SIZE + CONFIG::MAP_OFFSET));
                     window.draw(square);
                  }
             }
