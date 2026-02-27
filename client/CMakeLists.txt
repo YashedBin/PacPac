@@ -15,6 +15,8 @@ add_executable(pacpac
     src/game/map.cpp
     src/core/fileloader.cpp
 
+    src/entities/pacman.cpp
+
     src/engine/spritemanager.cpp
 )
 
