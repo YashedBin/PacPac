@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "core/fileloader.hpp"
+#include "core/consolelog.hpp"
 #include "game/global.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 

@@ -3,7 +3,8 @@
 
 
 Entity::Pacman::Pacman(Position p) : Entity(p) {
-    Core::Clog::log("Pacman", LogType::INFO, "Pacman Object Init!!");
+    Core::Clog::log("Pacman", LogType::INFO, "Pacman Object Initialized!!");
+    Core::Clog::log("Pacman", LogType::INFO, "Pacman Position: " + std::to_string(pos.x) + ","+ std::to_string(pos.y));
     
     std::string pacmanPath = std::string(PATH::SPRITE_PATH) + "ani_pacman_sheet.png";
     auto result = Core::FileLoader::load(pacmanPath.c_str());
@@ -17,7 +18,10 @@ Entity::Pacman::Pacman(Position p) : Entity(p) {
     std::vector<sf::Sprite> frames;
 
     if(!texture.loadFromImage(pacmanImage)) {
-        throw std::runtime_error("Failed to Initialized Texture Pacman");
+
+        std::string errorMsg = "Failed to Initialized Texture Obj for Pacman "; 
+        Core::Clog::log("Pacman", LogType::ERROR, errorMsg);
+        throw std::runtime_error(errorMsg);
     }
 
     for(int i = 0; i < 9; i++ ){

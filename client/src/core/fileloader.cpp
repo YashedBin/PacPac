@@ -10,7 +10,9 @@ namespace Core {
         : m_file(path) {
             // default neg
             if(!m_file.is_open()) {
-                throw std::runtime_error("Failed to open File:" + std::string(path));
+                std::string errorMsg = "Failed to open File: " + std::string(path);
+                Core::Clog::log("FileLoader", LogType::ERROR, errorMsg);
+                throw std::runtime_error(errorMsg);
             }
     }
 
@@ -40,14 +42,19 @@ namespace Core {
     sf::Image loadImage(const char* path) {
         sf::Image img;
         if(!img.loadFromFile(path)){
-            throw std::runtime_error("Failed to open File:" + std::string(path));
+            std::string errorMsg = "Failed to open File: " + std::string(path);
+            Core::Clog::log("FileLoader", LogType::ERROR, errorMsg);
+            throw std::runtime_error(errorMsg);
         }
         return img;        
     }
 
     std::variant<sf::Image, std::vector<std::string>, std::string> FileLoader::load(const char* filepath) {
+            
             auto [prefix, suffix] = getPrefixSuffix(filepath);
-    
+             
+            Core::Clog::log("FileLoader", LogType::INFO, "Loaded a " + suffix + " from :" + std::string(filepath));
+
             if (suffix == ".png" && prefix == "ani_") {
                return loadImage(filepath);
             }
@@ -66,6 +73,7 @@ namespace Core {
             }
 
             throw std::runtime_error("Unsupported file type"); 
+            Core::Clog::log("FileLoader", LogType::ERROR, "Unsupported File Type : " + suffix);
     }
 
     std::pair<std::string, std::string> FileLoader::getPrefixSuffix(const char* path) {
