@@ -14,6 +14,8 @@ add_executable(pacpac
     src/game/gamepanel.cpp
     src/game/map.cpp
     src/core/fileloader.cpp
+
+    src/engine/spritemanager.cpp
 )
 
 target_precompile_headers(pacpac PRIVATE
