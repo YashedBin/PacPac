@@ -2,7 +2,7 @@
 #include "entities/gameEntity.hpp"
 
 
-Entity::Pacman::Pacman(Position p) : Entity(p) {
+Entities::Pacman::Pacman(Position p) : Entity(p) {
     Core::Clog::log("Pacman", LogType::INFO, "Pacman Object Initialized!!");
     Core::Clog::log("Pacman", LogType::INFO, "Pacman Position: " + std::to_string(pos.x) + ","+ std::to_string(pos.y));
     
@@ -34,12 +34,12 @@ Entity::Pacman::Pacman(Position p) : Entity(p) {
 }
 
 
-Entity::Pacman::~Pacman() {
+Entities::Pacman::~Pacman() {
 
     Core::Clog::log("Pacman", LogType::INFO, "Pacman Object Destroyed!!");
 }
 
-void Entity::Pacman::update(float dt) {
+void Entities::Pacman::update(float dt) {
     frameTime += dt;
     if(frameTime >= s_info.frame_duration) {
         frameTime = 0;
@@ -50,7 +50,7 @@ void Entity::Pacman::update(float dt) {
 }
 
 
-void Entity::Pacman::render(sf::RenderWindow& window) {
+void Entities::Pacman::render(sf::RenderWindow& window) {
     
     auto& frames = Engine::SpriteManager::getInstance().getFrames("pacman");
     frames[s_info.frame_index].setPosition(sf::Vector2f{pos.x, pos.y});

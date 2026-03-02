@@ -11,7 +11,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Image.hpp>
 
-namespace Entity {
+namespace Entities {
     class Pacman : public Engine::Entity {
         private:
             Engine::SpriteData s_info;
