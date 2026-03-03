@@ -53,6 +53,7 @@ target_link_libraries(pacpac PRIVATE
 if(WIN32)
     # the Console Window Popups it toggle off 
     # to look at stdout/stderrs comment out
+    target_link_libraries(pacpac PRIVATE sfml-main)
     set_target_properties(pacpac PROPERTIES WIN32_EXECUTABLE TRUE)
 
     # MSVC-specific flags
