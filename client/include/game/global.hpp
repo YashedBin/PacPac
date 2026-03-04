@@ -1,4 +1,5 @@
 #pragma once
+#include "filesystem"
 
 #include <SFML/Graphics.hpp>
 
@@ -11,10 +12,10 @@
 
 namespace PATH {
 
-    constexpr const char* SPRITE_PATH = "assets/sprites/";
-    constexpr const char* SOUND_PATH = "assets/audio/"; 
-    constexpr const char* FONT_PATH = "assets/fonts/";
-    constexpr const char* MAPS_PATH = "assets/maps/";
+    inline const std::filesystem::path SPRITE_PATH = "assets/sprites/";
+    inline const std::filesystem::path SOUND_PATH = "assets/audio/"; 
+    inline const std::filesystem::path FONT_PATH = "assets/fonts/";
+    inline const std::filesystem::path MAPS_PATH = "assets/maps/";
 }
 
 namespace CONFIG {
