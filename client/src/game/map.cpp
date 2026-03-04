@@ -13,11 +13,12 @@ namespace Game {
    // So right now its static Type
 
     Map::Map() {
-        std::string Map1 = std::string(PATH::MAPS_PATH) + "map_classic.txt";
-        auto result = Core::FileLoader::load(Map1.c_str());
+        //std::string Map1 = std::string(PATH::MAPS_PATH) + "map_classic.txt";
+        std::filesystem::path mapPath = PATH::MAPS_PATH / "map_classic.txt";
+        auto result = Core::FileLoader::load(mapPath);
         m_mapData = std::get<std::vector<std::string>>(result);
 
-        Core::Clog::log("Map", LogType::INFO, "m_mapData has been Initialized!! from :" + std::string(Map1));
+        Core::Clog::log("Map", LogType::INFO, "m_mapData has been Initialized!! from :" + mapPath.string());
     }
 
     Map::~Map() {

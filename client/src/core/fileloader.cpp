@@ -6,11 +6,11 @@
 
 namespace Core {
     
-    FileLoader::FileLoader(const char* path)
+    FileLoader::FileLoader(const std::filesystem::path& path)
         : m_file(path) {
             // default neg
             if(!m_file.is_open()) {
-                std::string errorMsg = "Failed to open File: " + std::string(path);
+                std::string errorMsg = "Failed to open File: " + path.string();
                 Core::Clog::log("FileLoader", LogType::ERROR, errorMsg);
                 throw std::runtime_error(errorMsg);
             }
@@ -25,7 +25,7 @@ namespace Core {
     }
 
 
-    std::vector<std::string> FileLoader::loadLines(const char* path) {
+    std::vector<std::string> FileLoader::loadLines(const std::filesystem::path& path) {
         std::ifstream m_file(path);
         std::vector<std::string> dataLines;
         
@@ -39,21 +39,21 @@ namespace Core {
 
     }
 
-    sf::Image loadImage(const char* path) {
+    sf::Image FileLoader::loadImage(const std::filesystem::path& path) {
         sf::Image img;
         if(!img.loadFromFile(path)){
-            std::string errorMsg = "Failed to open File: " + std::string(path);
+            std::string errorMsg = "Failed to open File: " + path.string();
             Core::Clog::log("FileLoader", LogType::ERROR, errorMsg);
             throw std::runtime_error(errorMsg);
         }
         return img;        
     }
 
-    std::variant<sf::Image, std::vector<std::string>, std::string> FileLoader::load(const char* filepath) {
+    std::variant<sf::Image, std::vector<std::string>, std::string> FileLoader::load(const std::filesystem::path& filepath) {
             
             auto [prefix, suffix] = getPrefixSuffix(filepath);
              
-            Core::Clog::log("FileLoader", LogType::INFO, "Loaded a " + suffix + " from :" + std::string(filepath));
+            Core::Clog::log("FileLoader", LogType::INFO, "Loaded a " + suffix + " from :" + filepath.string());
 
             if (suffix == ".png" && prefix == "ani_") {
                return loadImage(filepath);
@@ -72,25 +72,19 @@ namespace Core {
                 // normal txt so far
             }
 
-            throw std::runtime_error("Unsupported file type"); 
             Core::Clog::log("FileLoader", LogType::ERROR, "Unsupported File Type : " + suffix);
+            throw std::runtime_error("Unsupported file type"); 
     }
 
-    std::pair<std::string, std::string> FileLoader::getPrefixSuffix(const char* path) {
-        
-        // Path path 
-        std::string filepath = std::string(path);
-        size_t lastSlash = filepath.find_last_of('/');
-        std::string fpath = filepath.substr(lastSlash + 1);
+    std::pair<std::string, std::string> FileLoader::getPrefixSuffix(const std::filesystem::path& path) {
+        std::filesystem::path filepath = path;
 
         /*
-         * All Assets are suppose to have 3 len Prefix 
+         * All Assets are suppose to have 3 length starting Prefix 
          * describing their Main Use
          */
-        std::string prefix = fpath.substr(0,4);
-        size_t pos = fpath.find_last_of('.');
-        if (pos == std::string::npos) return {"", ""};
-        std::string suffix = fpath.substr(pos);   
+        std::string prefix = path.stem().string().substr(0,4);
+        std::string suffix = path.extension().string();   
         
         return {prefix,suffix};
     }

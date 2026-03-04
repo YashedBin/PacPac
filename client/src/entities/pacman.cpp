@@ -6,8 +6,8 @@ Entities::Pacman::Pacman(Position p) : Entity(p) {
     Core::Clog::log("Pacman", LogType::INFO, "Pacman Object Initialized!!");
     Core::Clog::log("Pacman", LogType::INFO, "Pacman Position: " + std::to_string(pos.x) + ","+ std::to_string(pos.y));
     
-    std::string pacmanPath = std::string(PATH::SPRITE_PATH) + "ani_pacman_sheet.png";
-    auto result = Core::FileLoader::load(pacmanPath.c_str());
+    std::filesystem::path pacmanPath = PATH::SPRITE_PATH / "ani_pacman_sheet.png";
+    auto result = Core::FileLoader::load(pacmanPath);
     sf::Image pacmanImage  = std::get<sf::Image>(result);
 
     s_info.name = "pacman";
