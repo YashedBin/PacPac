@@ -16,9 +16,10 @@ namespace Game {
     Gamepanel::Gamepanel() 
             : m_window(sf::VideoMode(CONFIG::WIN_SIZE), "PacPac", sf::Style::Close),
               m_map(),
-              m_entityman()
+              m_entityman(),
+              m_eventhand()
         {
-
+        m_window.setFramerateLimit(60);
         m_window.setPosition(sf::Vector2i(100, 100));
 
         if (!ImGui::SFML::Init(m_window, true)) {
@@ -28,19 +29,25 @@ namespace Game {
             std::cerr << errorMsg << std::endl;
             return;
         }
-    
-        Core::Clog::log("Gamepanel", LogType::INFO, "Game PacPac got Initialized!"); 
-  
+
+        Core::Clog::log("Gamepanel", LogType::INFO, "Game PacPac got Initialized!");
+
         }
 
     void Gamepanel::Run() {
-    
+        const sf::Time frameTime = sf::seconds(1.f / 60.f);
+        float frameDelta = frameTime.asSeconds();
+
         sf::Clock deltaClock;
+        sf::Time timeSinceLastUpdate = sf::Time::Zero;
 
         while (isRunning()) {
 
-            sf::Time deltaTime = deltaClock.restart();
-            float dt = deltaTime.asSeconds();
+            //sf::Time deltaTime = deltaClock.restart();
+            //float dt = deltaTime.asSeconds();
+
+            sf::Time elapsedTime = deltaClock.restart();
+            timeSinceLastUpdate += elapsedTime;
 
            while (const auto event = m_window.pollEvent()) {
         
@@ -48,17 +55,42 @@ namespace Game {
                if(event->is<sf::Event::Closed>()){
                    m_window.close();
                }
-            // W = 22
-            // A = 0
-            // S = 18
-            // D = 3
-              
+
+               if(event->is<sf::Event::KeyPressed>()) {
+                    auto* key = event->getIf<sf::Event::KeyPressed>();
+                    sf::Keyboard::Scancode code = key->scancode;
+
+                    switch(code) {
+                        case sf::Keyboard::Scancode::W:
+                            m_eventhand.broadcast(Engine::EventType::PACMAN_MOVED, Direction::UP);
+                            break;
+                    
+                        case sf::Keyboard::Scancode::A:
+                            m_eventhand.broadcast(Engine::EventType::PACMAN_MOVED, Direction::LEFT);
+                            break;
+
+                        case sf::Keyboard::Scancode::S:
+                            m_eventhand.broadcast(Engine::EventType::PACMAN_MOVED, Direction::DOWN);
+                            break;
+
+                        case sf::Keyboard::Scancode::D:
+                            m_eventhand.broadcast(Engine::EventType::PACMAN_MOVED, Direction::RIGHT);
+                            break;
+                    }
+               }
            }
 
             ImGui::SFML::Update(m_window, deltaClock.restart());
             ImGui::Begin("PacPac"); 
             ImGui::End();
-            update(dt);
+
+            while (timeSinceLastUpdate > frameTime)
+            {
+                timeSinceLastUpdate -= frameTime;
+                // Event Processing
+                update(frameDelta);
+            }
+            //update(dt);
             render();
         } 
     }

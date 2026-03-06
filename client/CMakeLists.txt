@@ -18,7 +18,6 @@ add_executable(pacpac
     src/game/gamepanel.cpp
     src/game/map.cpp
     src/game/entitymanager.cpp
-    src/game/eventhandler.cpp
 )
 
 target_precompile_headers(pacpac PRIVATE

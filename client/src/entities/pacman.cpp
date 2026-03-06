@@ -18,7 +18,6 @@ Entities::Pacman::Pacman(Position p) : Entity(p) {
     std::vector<sf::Sprite> frames;
 
     if(!texture.loadFromImage(pacmanImage)) {
-
         std::string errorMsg = "Failed to Initialized Texture Obj for Pacman "; 
         Core::Clog::log("Pacman", LogType::ERROR, errorMsg);
         throw std::runtime_error(errorMsg);
@@ -40,21 +39,73 @@ Entities::Pacman::~Pacman() {
 }
 
 void Entities::Pacman::update(float dt) {
+    move(dt);
+
     frameTime += dt;
     if(frameTime >= s_info.frame_duration) {
         frameTime = 0;
         s_info.frame_index = (s_info.frame_index + 1) % s_info.frame_count;
     }
+}
 
-    // rest of Direction Logic.
+void Entities::Pacman::move(float dt) {
+
+    switch (pacDir) {
+
+        case Direction::RIGHT:
+            pos.x += CONST::PAC_SPEED * dt;  
+            break;
+        case Direction::LEFT:
+            pos.x -= CONST::PAC_SPEED * dt;  
+            break;
+        case Direction::UP:
+            pos.y -= CONST::PAC_SPEED * dt;  
+            break;
+        case Direction::DOWN:
+            pos.y += CONST::PAC_SPEED * dt;  
+            break;
+    }
+
 }
 
 
 void Entities::Pacman::render(sf::RenderWindow& window) {
     
     auto& frames = Engine::SpriteManager::getInstance().getFrames("pacman");
+    frames[s_info.frame_index].setOrigin(sf::Vector2f(CONFIG::TILE_SIZE / 2.f, CONFIG::TILE_SIZE / 2.f));
+
+    switch(pacDir) {
+        case Direction::RIGHT:
+                frames[s_info.frame_index].setRotation(sf::degrees(0.f)); break;
+        case Direction::LEFT:    
+                frames[s_info.frame_index].setRotation(sf::degrees(180.f)); break;
+        case Direction::UP:    
+                frames[s_info.frame_index].setRotation(sf::degrees(270.f)); break;
+        case Direction::DOWN:   
+                frames[s_info.frame_index].setRotation(sf::degrees(90.f)); break;
+    }
     frames[s_info.frame_index].setPosition(sf::Vector2f{pos.x, pos.y});
     window.draw(frames[s_info.frame_index]);
     
+}
+
+
+void Entities::Pacman::changeDirection(Direction newDir) {
+    Core::Clog::log("Pacman", LogType::DEBUG, "Pacman changed to " );
+    switch(newDir) {
+        case Direction::UP:
+            pacDir = newDir;
+            break;
+        case Direction::DOWN:
+            pacDir = newDir;
+            break;
+        case Direction::LEFT:
+            pacDir = newDir;
+            break;
+        case Direction::RIGHT:
+            pacDir = newDir;
+            break;
+    }
+
 }
 

@@ -25,7 +25,7 @@ class Gamepanel {
         sf::RenderWindow m_window;
         Map m_map;
         Engine::EntityManager m_entityman;
-        //static Engine::EventHandler eventHandler;
+        Engine::EventHandler<Direction> m_eventhand;
 
     public:
         Gamepanel();
