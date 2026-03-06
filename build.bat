@@ -1,17 +1,10 @@
 @echo off
-REM Batch for building Client 
-REM Windows is so different
 
-cd client
+if not exist build-win mkdir build-win
+cd build-win
 
-REM Creates obviously a Build Directory 
-if not exist build mkdir build
-cd build
-
-
-cmake ..
-
+cmake .. -G "Visual Studio 17 2022" -A x64
 cmake --build . --config Release
 
-REM Running the Exec
-REM pacpac.exe
+cd ..
+build-win\bin\Release\pacpac.exe

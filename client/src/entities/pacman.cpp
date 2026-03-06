@@ -2,12 +2,12 @@
 #include "entities/gameEntity.hpp"
 
 
-Entity::Pacman::Pacman(Position p) : Entity(p) {
+Entities::Pacman::Pacman(Position p) : Entity(p) {
     Core::Clog::log("Pacman", LogType::INFO, "Pacman Object Initialized!!");
     Core::Clog::log("Pacman", LogType::INFO, "Pacman Position: " + std::to_string(pos.x) + ","+ std::to_string(pos.y));
     
-    std::string pacmanPath = std::string(PATH::SPRITE_PATH) + "ani_pacman_sheet.png";
-    auto result = Core::FileLoader::load(pacmanPath.c_str());
+    std::filesystem::path pacmanPath = PATH::SPRITE_PATH / "ani_pacman_sheet.png";
+    auto result = Core::FileLoader::load(pacmanPath);
     sf::Image pacmanImage  = std::get<sf::Image>(result);
 
     s_info.name = "pacman";
@@ -18,7 +18,6 @@ Entity::Pacman::Pacman(Position p) : Entity(p) {
     std::vector<sf::Sprite> frames;
 
     if(!texture.loadFromImage(pacmanImage)) {
-
         std::string errorMsg = "Failed to Initialized Texture Obj for Pacman "; 
         Core::Clog::log("Pacman", LogType::ERROR, errorMsg);
         throw std::runtime_error(errorMsg);
@@ -34,27 +33,79 @@ Entity::Pacman::Pacman(Position p) : Entity(p) {
 }
 
 
-Entity::Pacman::~Pacman() {
+Entities::Pacman::~Pacman() {
 
     Core::Clog::log("Pacman", LogType::INFO, "Pacman Object Destroyed!!");
 }
 
-void Entity::Pacman::update(float dt) {
+void Entities::Pacman::update(float dt) {
+    move(dt);
+
     frameTime += dt;
     if(frameTime >= s_info.frame_duration) {
         frameTime = 0;
         s_info.frame_index = (s_info.frame_index + 1) % s_info.frame_count;
     }
+}
 
-    // rest of Direction Logic.
+void Entities::Pacman::move(float dt) {
+
+    switch (pacDir) {
+
+        case Direction::RIGHT:
+            pos.x += CONST::PAC_SPEED * dt;  
+            break;
+        case Direction::LEFT:
+            pos.x -= CONST::PAC_SPEED * dt;  
+            break;
+        case Direction::UP:
+            pos.y -= CONST::PAC_SPEED * dt;  
+            break;
+        case Direction::DOWN:
+            pos.y += CONST::PAC_SPEED * dt;  
+            break;
+    }
+
 }
 
 
-void Entity::Pacman::render(sf::RenderWindow& window) {
+void Entities::Pacman::render(sf::RenderWindow& window) {
     
     auto& frames = Engine::SpriteManager::getInstance().getFrames("pacman");
+    frames[s_info.frame_index].setOrigin(sf::Vector2f(CONFIG::TILE_SIZE / 2.f, CONFIG::TILE_SIZE / 2.f));
+
+    switch(pacDir) {
+        case Direction::RIGHT:
+                frames[s_info.frame_index].setRotation(sf::degrees(0.f)); break;
+        case Direction::LEFT:    
+                frames[s_info.frame_index].setRotation(sf::degrees(180.f)); break;
+        case Direction::UP:    
+                frames[s_info.frame_index].setRotation(sf::degrees(270.f)); break;
+        case Direction::DOWN:   
+                frames[s_info.frame_index].setRotation(sf::degrees(90.f)); break;
+    }
     frames[s_info.frame_index].setPosition(sf::Vector2f{pos.x, pos.y});
     window.draw(frames[s_info.frame_index]);
     
+}
+
+
+void Entities::Pacman::changeDirection(Direction newDir) {
+    Core::Clog::log("Pacman", LogType::DEBUG, "Pacman changed to " );
+    switch(newDir) {
+        case Direction::UP:
+            pacDir = newDir;
+            break;
+        case Direction::DOWN:
+            pacDir = newDir;
+            break;
+        case Direction::LEFT:
+            pacDir = newDir;
+            break;
+        case Direction::RIGHT:
+            pacDir = newDir;
+            break;
+    }
+
 }
 

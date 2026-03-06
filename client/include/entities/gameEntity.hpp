@@ -11,12 +11,12 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Image.hpp>
 
-namespace Entity {
+namespace Entities {
     class Pacman : public Engine::Entity {
         private:
             Engine::SpriteData s_info;
             std::vector<sf::Sprite> s_Sprite;
-            Direction dir = Direction::UP;
+            inline static Direction pacDir = Direction::UP;
             float frameTime = 0;
             sf::Texture texture;
         public:
@@ -24,6 +24,8 @@ namespace Entity {
             ~Pacman();
             void update(float dt) override;
             void render(sf::RenderWindow& window) override;
+            void move(float dt);
+            static void changeDirection(Direction newDir);
     };
 
 

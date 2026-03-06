@@ -1,8 +1,8 @@
 #include "engine/spritemanager.hpp"
 
 
-void Engine::SpriteManager::loadFrames(std::string name, std::vector<sf::Sprite> frames) {
-    spriteMap[name] = frames;
+void Engine::SpriteManager::loadFrames(const std::string& name, std::vector<sf::Sprite> frames) {
+    spriteMap[name] = std::move(frames);
     std::string msg = name + "'s Frames added into spriteMap!!";
     Core::Clog::log("SpriteManager", LogType::INFO, msg);
 }
@@ -15,6 +15,10 @@ Engine::SpriteManager& Engine::SpriteManager::getInstance() {
 
 Engine::SpriteManager::~SpriteManager() {
 
+}
+
+void Engine::SpriteManager::clear() {
+    spriteMap.clear();
 }
 
 std::vector<sf::Sprite>& Engine::SpriteManager::getFrames(std::string name) {

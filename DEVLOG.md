@@ -15,10 +15,10 @@ Disclaimer: This is not the actual docs or of a much helpful information
 - [x] `Gamepanel`  get working with the base Main class with proper `consoleLog`s
 - [x] Have to add this after commiting but need Loaders and Manual Classes to be added before anything related to big Fstreams
 - [x] if done with Panel running drawing `Map` is the goal
-- [ ] Map is drawn rather than going for Sprites We get `Pacman` done
+- [x] Map is drawn rather than going for Sprites We get `Pacman` done
 - [ ] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
 This is where the Pacman and roam around 
-- [ ] Ghost? nah `SpriteManager` get all sf::Rect fill with Sprites 
+- [x] Ghost? nah `SpriteManager` get all sf::Rect fill with Sprites 
 - [ ] `Ghost` now ( Because codebase is huge for Ghost )
 - [ ] `SoundManager` finishing Engine/'s half job
 - [ ] Add `Menu` so we can get going on real **PacPac**
@@ -28,6 +28,55 @@ because gameSense is validate on the Server::Room :)
 - [ ] `Pellets` & `Powerups` can be between above or After Server is done 
 for not adding overhead for us 
 --- 
+
+---
+## Dev Log 04-03-2026
+##### **Added**
+- Add `Engine::SpriteManager` with **Singleton** principal for static inconsistency 
+- Add `Entity` abstract class
+- Add `Entity::Pacman` with animation logic 
+- Add `Direction` enum to use for all Entities
+- Add `Core::Clog` for structured console logs 
+- Add `ani_pacman_sheet.png`  **10x1** Asset SpriteSheet for Pacman
+- Add `Core::Timer` with RAII based Timing & Formatting Time for `Core::Clog`
+- Add Defined WindowSize & Map changes 
+
+- Added `Engine::EntityManager` for better Entities managing and memory managing
+
+##### **Changed/Refactored**
+- Refactored `Global` Namespace to split into **PATH** , **CONFIG** & **CONST** for more clarity while writing
+- Refactored `Drawable` Signature ( Changes Gamepanel, Entities Methods aswell ); 
+- Refactored `Core::FileLoader` to have implicit loading via `load(path)` and Suffix Prefix checks
+- Revamped `Entity<T>` to wrapper mechanics
+
+- Entity `namespace` -> `Entities` namespace
+- Updated build scripts for same reason
+- **Sprites** from `Engine::SpriteManager` Now gets deleted before SM's obj becomes a Dangling pointer
+- Gamepanel refactoring for common mistakes
+
+##### **Config Changes**
+- Configured  `**PreCompiledHeaders**` in Client/CMakeLists.txt
+- Updated CMake for Cross Compilation TRY
+- CMake fixes for MSVC & Directory references in build.sh
+
+##### Removed Files
+- Removed `consoleLog.cpp`, `consoleLog.hpp` 
+- Removed `Entity<T>` completely -> Changing it into `Entity` abstract Class
+
+
+
+##### **Plan** 
+-  I DON"T HAVE ONE ANYMORE
+- Cross compilation is falling off
+- Linux binary is working great
+I'll try my to get Windows Binary ready then Refactor the Code with Cross Codes and Adequate header ifdefs 
+if worked? Docker or CICD actions are key to check if Window Binary gets compiled or not if not recheck the history to it again
+if does Hope it's not a path error
+
+- Doing 
+Cross Compilation -> CICD or DOCKER -> REFACTORING -> Ghost -> Ghosts -> SoundManager etc
+
+---
 
 
 ---

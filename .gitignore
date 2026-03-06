@@ -1,6 +1,8 @@
 # Build
 
 build/
+build-lin/
+build-win/
 dist/
 *.exe
 *.obj

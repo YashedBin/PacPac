@@ -6,6 +6,8 @@
 
 #include "engine/drawable.hpp"
 #include "engine/entity.hpp"
+#include "engine/eventhandler.hpp"
+#include "engine/entitymanager.hpp"
 
 #include "game/map.hpp"
 #include "game/global.hpp"
@@ -18,11 +20,12 @@
 
 namespace Game {
 
-class Gamepanel : public Drawable {
+class Gamepanel {
     private:
-        static sf::RenderWindow window;
-        static Map map;
-        static Entity::Pacman pac;
+        sf::RenderWindow m_window;
+        Map m_map;
+        Engine::EntityManager m_entityman;
+        Engine::EventHandler<Direction> m_eventhand;
 
     public:
         Gamepanel();
@@ -32,7 +35,7 @@ class Gamepanel : public Drawable {
 
         /*Run is master, update() is for Events and Updating*/
         void update(float dt); 
-        void render(sf::RenderWindow& window); 
+        void render(); 
     };
 
 }

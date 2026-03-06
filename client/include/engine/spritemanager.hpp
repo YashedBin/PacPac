@@ -30,7 +30,8 @@ namespace Engine {
             ~SpriteManager();
             static SpriteManager& getInstance();
             std::vector<sf::Sprite>& getFrames(std::string name);
-            void loadFrames(std::string name, std::vector<sf::Sprite> frames);
+            void loadFrames(const std::string& name, std::vector<sf::Sprite> frames);
+            void clear();
         private:
             SpriteManager() = default;
             std::unordered_map<std::string, std::vector<sf::Sprite>> spriteMap;
