@@ -43,9 +43,6 @@ namespace Game {
 
         while (isRunning()) {
 
-            //sf::Time deltaTime = deltaClock.restart();
-            //float dt = deltaTime.asSeconds();
-
             sf::Time elapsedTime = deltaClock.restart();
             timeSinceLastUpdate += elapsedTime;
 
@@ -80,7 +77,7 @@ namespace Game {
                }
            }
 
-            ImGui::SFML::Update(m_window, deltaClock.restart());
+            ImGui::SFML::Update(m_window, elapsedTime);
             ImGui::Begin("PacPac"); 
             ImGui::End();
 

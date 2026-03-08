@@ -38,8 +38,8 @@ namespace CONFIG {
 
 namespace CONST {
 
-    constexpr float PAC_SPEED = 100.0f; // 100% of FPS
-    constexpr float GHOST_SPEED = 3.0f; // 120
+    constexpr float PAC_SPEED = 2.0f; 
+    constexpr float GHOST_SPEED = 1.5f; 
 
     constexpr unsigned int SCORE_PELLET = 10;
     constexpr unsigned int SCORE_P_PELLET = 20;
