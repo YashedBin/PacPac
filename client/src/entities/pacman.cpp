@@ -40,6 +40,8 @@ Entities::Pacman::~Pacman() {
 
 void Entities::Pacman::update(float dt) {
     move(dt);
+    //std::string = "Current Position " + pos.x + pos.y;
+    //Core::Clog::log("Pacman", LogType::DEBUG,);
 
     frameTime += dt;
     if(frameTime >= s_info.frame_duration) {
@@ -50,23 +52,46 @@ void Entities::Pacman::update(float dt) {
 
 void Entities::Pacman::move(float dt) {
 
+    sf::Vector2i dirVec = dirToVec();
+
     switch (pacDir) {
 
         case Direction::RIGHT:
-            pos.x += CONST::PAC_SPEED * dt;  
+            // pos.x += (CONST::PAC_SPEED * dt);
+            pos.x += dirVec.x * CONST::PAC_SPEED;
             break;
         case Direction::LEFT:
-            pos.x -= CONST::PAC_SPEED * dt;  
+            // pos.x -= (CONST::PAC_SPEED * dt);
+            pos.x += dirVec.x * CONST::PAC_SPEED;
             break;
         case Direction::UP:
-            pos.y -= CONST::PAC_SPEED * dt;  
+            // pos.y -= (CONST::PAC_SPEED * dt);
+            pos.y += dirVec.y * CONST::PAC_SPEED;
             break;
         case Direction::DOWN:
-            pos.y += CONST::PAC_SPEED * dt;  
+            // pos.y += (CONST::PAC_SPEED * dt);
+            pos.y += dirVec.y * CONST::PAC_SPEED;
             break;
     }
 
 }
+
+sf::Vector2i Entities::Pacman::dirToVec() {
+    switch (pacDir) {
+    case Direction::RIGHT: return { 1,  0 };
+    case Direction::LEFT:  return { -1,  0 };
+    case Direction::UP:    return { 0, -1 };
+    case Direction::DOWN:  return { 0,  1 };
+    }
+    return { 0,0 };
+}
+
+//bool Entities::Pacman::isAligned() {
+//    if () {
+//        return true;
+//    }
+//    return false
+//}
 
 
 void Entities::Pacman::render(sf::RenderWindow& window) {

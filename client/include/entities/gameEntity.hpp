@@ -25,6 +25,8 @@ namespace Entities {
             void update(float dt) override;
             void render(sf::RenderWindow& window) override;
             void move(float dt);
+            bool isAligned();
+            sf::Vector2i dirToVec();
             static void changeDirection(Direction newDir);
     };
 
