@@ -16,7 +16,7 @@ Disclaimer: This is not the actual docs or of a much helpful information
 - [x] Have to add this after commiting but need Loaders and Manual Classes to be added before anything related to big Fstreams
 - [x] if done with Panel running drawing `Map` is the goal
 - [x] Map is drawn rather than going for Sprites We get `Pacman` done
-- [ ] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
+- [-] Along with `EventListner`  & `EventHandler` (Game or Engine Idk I'm confused)
 This is where the Pacman and roam around 
 - [x] Ghost? nah `SpriteManager` get all sf::Rect fill with Sprites 
 - [ ] `Ghost` now ( Because codebase is huge for Ghost )
@@ -28,6 +28,26 @@ because gameSense is validate on the Server::Room :)
 - [ ] `Pellets` & `Powerups` can be between above or After Server is done 
 for not adding overhead for us 
 --- 
+
+
+---
+## Dev Log 09-03-2026
+##### **Goals** 
+- 
+##### **Added**
+- Add `Engine::EventHandler` for event handling
+- Add Pacman Movement added
+- Add `client/CMakeLists.txt` for VS(MSVC) Compilation
+WORKS FOR BOTH WINDOWS
+- Changed `const char*` paths to `std::filesystem::path` for Cross compilation
+- Changed `client/CMakeLists.txt` for both `Windows` & `Linux`
+
+##### **Notes:** 
+- Needed pacman collision and Ghost
+##### **Plan** 
+- 
+---
+
 
 ---
 ## Dev Log 04-03-2026
@@ -171,7 +191,7 @@ So, it was more stable.
 - [x] Global CMakeLists.txt and Client CMake
 - [x] Change Build.sh / Build.bat
 - [x] Add `ImGui-SFML` and Change builds and CMakeLists.txt
-- [ ] Try a Window build run ( after Exams )
+- [x] Try a Window build run ( after Exams )
 - [x] `FileLoader` & `Map` if everything is done
 
 ### Change of Plans for GUI
