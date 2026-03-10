@@ -49,7 +49,20 @@ namespace Core {
         return img;        
     }
 
-    std::variant<sf::Image, std::vector<std::string>, std::string> FileLoader::load(const std::filesystem::path& filepath) {
+    std::vector<uint8_t> FileLoader::loadBinMap(const std::filesystem::path& path) {
+        std::ifstream file(path, std::ios::binary);
+
+        file.seekg(0, std::ios::end);
+        size_t size = file.tellg();
+        file.seekg(0, std::ios::beg);
+
+        std::vector<uint8_t> data(size);
+        file.read(reinterpret_cast<char*>(data.data()), size);
+
+        return data;
+    }
+
+    std::variant<sf::Image, std::vector<std::string>, std::string, std::vector<uint8_t>> FileLoader::load(const std::filesystem::path& filepath) {
             
             auto [prefix, suffix] = getPrefixSuffix(filepath);
              
@@ -62,7 +75,7 @@ namespace Core {
                 return loadLines(filepath);
             }
             if (suffix == ".bin" && prefix == "map_") {
-                //return loadBinary(filepath);
+                return loadBinMap(filepath);
             }    
             if (suffix == ".png") {
                 // return loadImage(path);
