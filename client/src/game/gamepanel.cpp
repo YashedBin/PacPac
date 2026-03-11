@@ -110,7 +110,7 @@ namespace Game {
     void Gamepanel::render() {
 
     
-        m_window.clear();
+        m_window.clear(sf::Color::White);
         m_map.drawMap(m_window , 0);
         
         m_entityman.renderAll(m_window);

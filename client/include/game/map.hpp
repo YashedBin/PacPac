@@ -12,7 +12,9 @@ namespace Game {
 
     class Map {
         private:
-            std::vector<std::string> m_mapData;
+            //std::vector<std::string> m_mapData;
+            std::vector<uint8_t> m_mapData;
+            uint16_t ROW, COL;
             static Core::FileLoader FileLoader;
     
         public: 

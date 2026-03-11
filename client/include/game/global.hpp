@@ -3,13 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-    // Refe
-    // W = 22
-    // A = 0
-    // S = 18
-    // D = 3
-
-
 namespace PATH {
 
     inline const std::filesystem::path SPRITE_PATH = "assets/sprites/";
