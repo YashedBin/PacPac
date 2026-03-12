@@ -8,6 +8,16 @@ struct Position {
     float x,y;
     Position() = default;
     Position(float x, float y) : x(x), y(y) {}
+
+    bool operator==(const Position& other) const {
+        return x == other.x && y == other.y;
+    }
+    // if equal to
+    
+    bool operator!=(const Position& other) const {
+        return !(*this == other);
+    }
+    // if not equal to
 };
 
 namespace Engine {
