@@ -21,6 +21,9 @@ namespace Game {
             Map();
             virtual ~Map();
             void drawMap(sf::RenderWindow& window, int MapIndex);
+            bool isTile(int row, int col, uint8_t type) const;
+            //bool isWall(float nx, float n);
+            void printMap(int row, int col) const;
     
     };
 

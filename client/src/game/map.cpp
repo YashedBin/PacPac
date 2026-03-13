@@ -36,6 +36,18 @@ namespace Game {
         
     }
 
+    bool Map::isTile(int row, int col,uint8_t type) const {
+        if (row < 0 || col < 0 || row >= ROW || col >= COL)
+            return true;
+        return m_mapData[row * COL + col] == type;
+    }
+
+    void Map::printMap(int row, int col) const {
+        if (row < 0 || col < 0 || row >= ROW || col >= COL)
+            return;
+        std::cout << "row:" << row << "col:" << col << " "<< int(m_mapData[row * COL + col]) << "\n";
+    }
+
     void Map::drawMap(sf::RenderWindow& window, int MapIndex) {
         
         sf::RectangleShape square(sf::Vector2f(32.f, 32.f));
