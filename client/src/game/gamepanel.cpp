@@ -20,7 +20,7 @@ namespace Game {
               m_eventhand()
         {
         m_window.setFramerateLimit(60);
-        m_window.setPosition(sf::Vector2i(100, 100));
+        m_window.setPosition(sf::Vector2i(10, 10));
 
         if (!ImGui::SFML::Init(m_window, true)) {
 

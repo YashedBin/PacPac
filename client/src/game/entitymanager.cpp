@@ -9,7 +9,7 @@ namespace Engine {
 
     EntityManager::EntityManager() {
         Core::Clog::log("EntityManager", LogType::INFO, "EntityManager Object Initialized!");
-        addEntity(new Entities::Pacman(Position(CONFIG::MAP_OFFSET + 32 + CONFIG::TILE_SIZE / 2, CONFIG::MAP_OFFSET + 32 + CONFIG::TILE_SIZE / 2)));
+        addEntity(new Entities::Pacman(Position(CONFIG::MAP_OFFSET + 32 * 7 + CONFIG::TILE_SIZE / 2, CONFIG::MAP_OFFSET + 32 * 15 + CONFIG::TILE_SIZE / 2)));
 
     }
 
