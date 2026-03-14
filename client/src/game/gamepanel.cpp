@@ -20,7 +20,7 @@ namespace Game {
               m_eventhand()
         {
         m_window.setFramerateLimit(60);
-        m_window.setPosition(sf::Vector2i(100, 100));
+        m_window.setPosition(sf::Vector2i(10, 10));
 
         if (!ImGui::SFML::Init(m_window, true)) {
 
@@ -42,9 +42,6 @@ namespace Game {
         sf::Time timeSinceLastUpdate = sf::Time::Zero;
 
         while (isRunning()) {
-
-            //sf::Time deltaTime = deltaClock.restart();
-            //float dt = deltaTime.asSeconds();
 
             sf::Time elapsedTime = deltaClock.restart();
             timeSinceLastUpdate += elapsedTime;
@@ -80,7 +77,7 @@ namespace Game {
                }
            }
 
-            ImGui::SFML::Update(m_window, deltaClock.restart());
+            ImGui::SFML::Update(m_window, elapsedTime);
             ImGui::Begin("PacPac"); 
             ImGui::End();
 
@@ -113,7 +110,7 @@ namespace Game {
     void Gamepanel::render() {
 
     
-        m_window.clear();
+        m_window.clear(sf::Color::White);
         m_map.drawMap(m_window , 0);
         
         m_entityman.renderAll(m_window);

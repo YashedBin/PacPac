@@ -17,12 +17,13 @@ namespace Core {
             static std::pair<std::string, std::string> getPrefixSuffix(const std::filesystem::path& path);
             static std::vector<std::string> loadLines(const std::filesystem::path& path);
             static sf::Image loadImage(const std::filesystem::path& path);
+            static std::vector<uint8_t> loadBinMap(const std::filesystem::path& filepath);
 
         public:
             explicit FileLoader(const std::filesystem::path& path);
             
             virtual ~FileLoader();
-            static std::variant<sf::Image, std::vector<std::string>, std::string> load(const std::filesystem::path& filepath);
+            static std::variant<sf::Image, std::vector<std::string>, std::string, std::vector<uint8_t>> load(const std::filesystem::path& filepath);
             // json , yaml later 
     };
 }

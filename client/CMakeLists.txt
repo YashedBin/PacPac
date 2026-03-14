@@ -20,6 +20,11 @@ add_executable(pacpac
     src/game/entitymanager.cpp
 )
 
+# Add VS Dir path Property here
+set_target_properties(pacpac PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY "$<TARGET_FILE_DIR:pacpac>"
+)
+
 target_precompile_headers(pacpac PRIVATE
     <SFML/Graphics.hpp>
     <SFML/Window.hpp>

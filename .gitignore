@@ -53,6 +53,11 @@ protocol/generated
 *.vcxproj.user
 
 
+# local experiments or scripts for dev
+
+local/
+
+
 # OS
 .DS_Store
 .DS_Store?
