@@ -29,6 +29,25 @@ because gameSense is validate on the Server::Room :)
 for not adding overhead for us 
 --- 
 
+---
+## Dev Log 14-03-2026
+##### **Goals** 
+- from 9-14 it was just Pacman Movement which later laid the foundation for Ghosts
+- Fixes if any
+- Refactoring `on 15th February 2026` (really!! this time)
+##### **Added**
+- Pacman Movement with Grid Alignement Snap check & Buffering too ( not time based buffering )
+##### **Fixed** 
+- `MAP_OFFSET` in `Pacman::render()` gave me issue for 3 STRAIGHT DAYS 
+- I was trying with Logic and Logs and Debugging but my Rendering Was WAY off the offset so I was getting fooled
+##### **Notes:** 
+- Make the `Pacman_Mistakes`.md 
+- CLEAN the Code tomorrow false Debugs add Clogs
+- Pellets afterwards
+##### **Plan** 
+- `Pellets` -> `Scoreboard` -> `Ghosts` -> `Ghost Logics` -> idk I never reach this far : ) 
+---
+
 
 ---
 ## Dev Log 09-03-2026
