@@ -4,6 +4,7 @@
 #include "engine/spritemanager.hpp"
 #include "core/consolelog.hpp"
 #include "game/global.hpp"
+#include "game/map.hpp"
 #include "core/fileloader.hpp"
 
 
@@ -16,17 +17,23 @@ namespace Entities {
         private:
             Engine::SpriteData s_info;
             std::vector<sf::Sprite> s_Sprite;
-            inline static Direction pacDir = Direction::UP;
+            inline static Direction pacDir = Direction::IDLE;
+            inline static Direction nextDir = Direction::IDLE;
             float frameTime = 0;
             sf::Texture texture;
+            Position m_prevPos;
+            Game::Map m_map;
+
         public:
             Pacman(Position p);
             ~Pacman();
             void update(float dt) override;
             void render(sf::RenderWindow& window) override;
             void move(float dt);
-            bool isAligned();
-            sf::Vector2i dirToVec();
+            bool isAligned() const ;
+            sf::Vector2i dirToVec(Direction dir) const ;
+            bool checkPath(float nx, float ny) const;
+            void snapToGrid();
             static void changeDirection(Direction newDir);
     };
 
